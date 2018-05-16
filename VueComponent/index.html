@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <child></child>
+        <component></component> 
+    </div>
+    <div id="app2">
+        <child></child> <!-- app 엘리먼트에 해당하는 영역에 포함된 지역 컴포넌트는 컴포넌트는 정상적으로 렌더링 되지않는다. -->
+        <component></component> <!-- 전역컴포넌트는 정상적으로 렌더링 된다. -->
+    </div>
+   <!-- 전역이더라도 뷰 인스턴스영역 밖에 정의하면 렌더링되지않는다.  -->
+    <component></component> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    <script>
+
+        // 전역 컴포넌트 등록 
+        Vue.component('component', {
+            template: "<div>전역 컴포넌트</div>"
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                msg : 'hello world'
+            },
+            // 지역 컴포넌트 등록 
+            components: {
+                'child' : {
+                    template : "<div>지역 컴포넌트</div>"
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app2'
+        });        
+    </script>
+</body>
+</html>
