@@ -10,10 +10,14 @@
     <div id="app">
         {{msg}}
     </div>
+
+    <!-- 아래의 msg블락은 Vue인스턴스의 유효범위를 벗어낫기 때문에 hello world가 바인딩되지 않는다.  -->
+    {{msg}} 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
     <script>
         new Vue({
-            el: '#app',
+            el: '#app', // css 선택자와 동일한 문법을 사용한다. 
             data: {
                 msg : 'hello world'
             }
