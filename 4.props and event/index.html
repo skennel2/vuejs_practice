@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <child v-bind:d1= "msg" v-on:on-click="changeMsg"></child>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    <script>
+        Vue.component('child', {
+            props: ["d1"],
+            template: '<div v-on:click="onClick">{{d1}}</div>',
+            methods: {
+                onClick : function(){
+                    this.$emit('on-click')
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app', // css 선택자와 동일한 문법을 사용한다. 
+            data: {
+                msg : 'hello world'
+            },
+            methods:{
+                changeMsg : function(){
+                    this.msg = "hello universe"
+                    alert("event invoked!");
+                }
+            }
+        })
+    </script>
+</body>
+</html>
