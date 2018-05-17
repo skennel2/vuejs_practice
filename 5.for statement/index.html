@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <product-list v-bind:products= "products" v-on:item-click = "alertItem"></product-list>        
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    <script>
+        Vue.component('product-list', {
+            props : ["products"],
+            template : 
+            "<ul>" + 
+            "   <li v-for = 'product in products' v-on:click = onItemClick(product)>" + 
+            "       {{product}} " + 
+            "   </li>" + 
+            "<ul>", 
+            methods : {
+                onItemClick : function(item){
+                    this.$emit('item-click', item);
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app', 
+            data: {
+                products : []
+            },
+            created : function(){                
+                // ajax 로 데이터를 가져왔다고 가정
+                this.products = [
+                    "Book", "CD", "Tape"
+                ];
+            },
+            methods : {
+                alertItem : function(item){
+                    alert(item);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

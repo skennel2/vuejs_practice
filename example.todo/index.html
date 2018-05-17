@@ -11,19 +11,18 @@
         {{msg}}
     </div>
 
-    <!-- 아래의 msg블락은 Vue인스턴스의 유효범위를 벗어낫기 때문에 hello world가 바인딩되지 않는다.  -->
-    {{msg}} 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
     <script>
+        Vue.components('todo', {
+            template : "<div></div>",            
+        })
+
         new Vue({
-            // css 선택자와 동일한 문법을 사용한다. 
-            // 메인 뷰앱이 렌더링되는 영역을 지정한다. 
-            el: '#app', 
+            el: '#app', // css 선택자와 동일한 문법을 사용한다. 
             data: {
                 msg : 'hello world'
             }
-        })
+        });
     </script>
 </body>
 </html>
