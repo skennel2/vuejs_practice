@@ -8,14 +8,18 @@
 </head>
 <body>
     <div id="app">
-        <child v-bind:d1= "msg" v-on:on-click="changeMsg"></child>
+        <!-- v-bind:props명칭 = "상위컴포넌트의 데이터" -->
+        <!-- props명칭 = "전달할 문자데이터" -->
+        <child v-bind:d1 = "msg"  
+               d2 = "!!!"
+               v-on:on-click="changeMsg"></child>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
     <script>
         Vue.component('child', {
-            props: ["d1"],
-            template: '<div v-on:click="onClick">{{d1}}</div>',
+            props: ["d1", "d2"],
+            template: '<div v-on:click="onClick">{{d1}} {{d2}}</div>',
             methods: {
                 onClick : function(){
                     this.$emit('on-click')

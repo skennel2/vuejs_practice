@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <child></child>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    <script>
+        // 이벤트 버스는 너무 광범위하게 사용되면 
+        // 이벤트 호출의 관리가 어려워진다. 그럴때 사용하는것이 vuex
+
+        // 전역레벨로 이벤트 버스 정의
+        var eventBus = new Vue();
+
+        Vue.component('child', {
+            template : 
+            "<div>" + 
+            " 하위 컴포넌트 영역 " +
+            "<button v-on:click = 'onClick'> 이벤트버스 </button>"+
+            "</div>",
+            methods : {
+                onClick : function(){
+                    eventBus.$emit("triggerEventBus", 100);
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app', 
+            created: function(){
+                eventBus.$on("triggerEventBus", function(value){
+                    alert(value);
+                });
+            }
+        })
+    </script>
+</body>
+</html>
