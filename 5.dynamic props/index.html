@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <child v-bind></child>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    <script>
+
+        Vue.component('child', {
+            // props 정의
+            props: ['message'],
+            // 데이터와 마찬가지로 prop은 템플릿 내부에서 사용할 수 있으며
+            // vm의 this.message로 사용할 수 있습니다.
+            template: '<span>{{ message }}</span>'
+        })
+
+        new Vue({
+            el: '#app', 
+            data: {
+                message : 'hello world'
+            }
+        })
+    </script>
+</body>
+</html>
