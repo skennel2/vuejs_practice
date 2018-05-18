@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>뷰 라우터 예제</h1>
+        <router-link to = "/main">Main 컴포넌트로 이동</router-link>
+        <router-link to = "/login">Login 컴포넌트로 이동</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.js"></script>
+    <script>
+        // 전역 컴포넌트 등록
+        var main  = Vue.component('main', {
+            template : "<div> main </div>"
+        });
+
+        var login = Vue.component('login', {
+            template : "<div> login </div>"
+        }); 
+        
+        var routes = [
+            {path : '/main', component  : main},
+            {path : '/login', component : login},
+        ];
+
+        // 라우트 인스턴스 생성     
+        var router = new VueRouter({
+            //mode : 'history',
+            routes
+        });
+
+        // 뷰 인스턴스에 라우터 등록
+        var app = new Vue({
+            router
+        }).$mount('#app');
+    </script>
+</body>
+</html>
