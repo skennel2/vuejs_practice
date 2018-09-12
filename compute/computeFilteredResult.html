@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       <ul>
+           <li v-for ='fruit in getCheapFruit'>{{fruit.name}}</li>
+       </ul>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    <script>        
+        new Vue({            
+            el: '#app', 
+            data: {
+                fruits : [
+                    {name: 'apple', price: 10000},
+                    {name: 'banana', price: 3000},
+                    {name: 'peach', price: 12000 },
+                    {name: 'water melon', price: 20000},
+                    {name: 'tomato', price: 1500},
+                ]            
+            },
+            computed: {
+                getCheapFruit(){
+                    return this.fruits.filter(f=>f.price < 5000)
+                }
+            },
+            method: {
+
+            }
+        })
+    </script>
+</body>
+</html>
