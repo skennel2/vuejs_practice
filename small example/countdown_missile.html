@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="launch">launch</button>
+        <ul>
+            <li v-for='(n, i) in arr'>{{ n }}</li>
+            <li>{{ arr.length == 10 ? "launch missile" : "" }}</li>
+        </ul>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    <script>        
+        var vm = new Vue({            
+            el : '#app',
+            methods : {
+                launch : function(){               
+                    if(this.isLaunch == false){                        
+                        var count = 10;
+
+                        setInterval(function(){
+                            if(vm.arr.length < 10){
+                                vm.arr.push(count--);
+                            }
+                        }, 1000);    
+
+                        this.isLaunch = true;
+                    }                
+                }
+            },
+            data : {
+                arr : [],
+                isLaunch : false
+            }
+        });
+        
+        
+    </script>
+</body>
+</html>
